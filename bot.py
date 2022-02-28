@@ -1,7 +1,7 @@
 import os
 import dotenv
 from sqlalchemy import false, true
-from constants import TWEETS, ACCOUNTS, KEYWORDS
+from constants import ACCOUNTS, KEYWORDS, KEYWORDS_FOR_SEARCH
 from datetime import datetime, timedelta
 from pathlib import Path
 from dotenv import load_dotenv
@@ -23,7 +23,7 @@ class TwitterBot:
     
 
     def __big_account_search(self, account: str, ids: list[int]) -> list[int]:
-        query = f"from: {account} -is:retweet -is:reply"
+        query = f"from: {account}"
         data = self.client.search_recent_tweets(query=query, tweet_fields=['created_at'])
         
         for tweet in data.data:
@@ -80,8 +80,8 @@ class TwitterBot:
 
         ids = []
 
-        for keyword in KEYWORDS:
-            self.__keyword_search(keyword, ids)
+        for keyword in KEYWORDS_FOR_SEARCH:
+             self.__keyword_search(keyword, ids)
 
         for account in ACCOUNTS:
             self.__big_account_search(account, ids)
@@ -90,7 +90,6 @@ class TwitterBot:
         print(ids)
 
         return ids
-        
     
     def tweet(self) -> None:
         tweet: Tweet = Tweet.get_first(self.session)
