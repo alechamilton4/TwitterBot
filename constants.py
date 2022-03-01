@@ -1,5 +1,7 @@
+nl = '\n'
+
 TWEETS = [
-    
+    'https://t.me/QingLongInu/38'
 ]
 
 ACCOUNTS = [

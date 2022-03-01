@@ -3,20 +3,18 @@ from bot import TwitterBot
 import time
 
 
-def main(sleep_seconds: int):
+def main() -> None:
     session = Session()
     bot = TwitterBot(session=session)
     while True:
         bot.search()
-        #time.sleep(sleep_seconds*5)
         for _ in range(10):
             bot.tweet()
-            #time.sleep(sleep_seconds)
-
+        time.sleep(60*30) #Sleep for 30 minutes to avoid rate limit
 if __name__ == "__main__":
-    main(2)
-
-
+    main()
+    
+    
 
 
 

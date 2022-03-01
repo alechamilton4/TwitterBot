@@ -39,14 +39,6 @@ class Tweet(Base):
         else:
             return False
 
-    def tweet(self, session, client):
-        # tweet = random.choice(TWEETS)
-        # response = client.create_tweet(text=tweet,in_reply_to_tweet_id=self.tweet_id)
-
-        # if response.status == 200:
-        #     self.replied_to = True
-        #     session.commit()
-        print("Tweeted")
 
 Base.metadata.create_all(engine)
 
